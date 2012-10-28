@@ -1,16 +1,16 @@
 %include	/usr/lib/rpm/macros.gstreamer
 
-%define		gstname		gst-ffmpeg
-%define		gst_major_ver	0.10
+%define		gstname		gst-libav
+%define		gst_major_ver	1.0
 
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
-Name:		gstreamer-ffmpeg
-Version:	0.10.13
-Release:	3
+Name:		gstreamer-libav
+Version:	1.0.2
+Release:	1
 License:	GPL v2+
 Group:		Libraries
-Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.tar.bz2
-# Source0-md5:	7f5beacaf1312db2db30a026b36888c4
+Source0:	http://gstreamer.freedesktop.org/src/gst-libav/%{gstname}-%{version}.tar.xz
+# Source0-md5:	b932d386711a1b14d08c3b7d3021934b
 URL:		http://gstreamer.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -36,7 +36,7 @@ popular multimedia formats.
 %prep
 %setup -qn %{gstname}-%{version}
 
-sed -i -e 's|sleep 15||' configure.ac
+sed -i -e '/sleep 15/d' configure.ac
 
 %build
 %{__libtoolize}
@@ -46,7 +46,7 @@ sed -i -e 's|sleep 15||' configure.ac
 %{__automake}
 %configure \
 	--disable-static 	\
-	--with-system-ffmpeg
+	--with-system-libav
 %{__make} V=1
 
 %install
@@ -63,7 +63,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_libdir}/gstreamer-%{gst_major_ver}/libgstffmpeg.so
-%attr(755,root,root) %{_libdir}/gstreamer-%{gst_major_ver}/libgstffmpegscale.so
-%attr(755,root,root) %{_libdir}/gstreamer-%{gst_major_ver}/libgstpostproc.so
+%attr(755,root,root) %{_libdir}/gstreamer-%{gst_major_ver}/libgstavscale.so
+%attr(755,root,root) %{_libdir}/gstreamer-%{gst_major_ver}/libgstlibav.so
 
