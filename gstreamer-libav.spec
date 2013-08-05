@@ -5,12 +5,12 @@
 
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
 Name:		gstreamer-libav
-Version:	1.0.7
+Version:	1.0.8
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-libav/%{gstname}-%{version}.tar.xz
-# Source0-md5:	68e1eb18a58907e21b81d26ce7db056a
+# Source0-md5:	7c2e8db039efa1880a61a6982a6909d7
 URL:		http://gstreamer.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
