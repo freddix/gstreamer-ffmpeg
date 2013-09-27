@@ -5,16 +5,16 @@
 
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
 Name:		gstreamer-libav
-Version:	1.0.10
+Version:	1.2.0
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-libav/%{gstname}-%{version}.tar.xz
-# Source0-md5:	715564cdb735dad75b0e770e044488e0
+# Source0-md5:	382bc5a99d22a4fbf8e971c42bb72c01
 URL:		http://gstreamer.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-#BuildRequires:	libav-devel
+BuildRequires:	libav-devel
 BuildRequires:	gstreamer-plugins-base-devel
 BuildRequires:	libtool
 BuildRequires:	pkg-config
@@ -46,8 +46,7 @@ sed -i -e '/sleep 15/d' configure.ac
 %{__automake}
 %configure \
 	--disable-static	\
-	--with-libav-extra-configure="--enable-runtime-cpudetect"
-#	--with-system-libav
+	--with-system-libav
 %{__make} V=1
 
 %install
@@ -56,7 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{gst_major_ver}/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{gst_major_ver}/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -64,6 +63,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_libdir}/gstreamer-%{gst_major_ver}/libgstavscale.so
 %attr(755,root,root) %{_libdir}/gstreamer-%{gst_major_ver}/libgstlibav.so
 
