@@ -5,12 +5,12 @@
 
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
 Name:		gstreamer-libav
-Version:	1.2.4
+Version:	1.4.3
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-libav/%{gstname}-%{version}.tar.xz
-# Source0-md5:	6454f9f22b3aa37694781633e0d20a9c
+# Source0-md5:	248b6aae752710bbae77af01f74a082d
 URL:		http://gstreamer.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -45,7 +45,8 @@ sed -i -e '/sleep 15/d' configure.ac
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-static
+	--disable-static    \
+	--with-libav-extra-configure="--enable-runtime-cpudetect"
 #	--with-system-libav
 %{__make} V=1
 
